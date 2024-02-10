@@ -52,7 +52,16 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
+map<ll, ll> memo;
+ll total(ll N){
+    if (N == 1) return 0;
+    if (memo.count(N)) return memo[N];
+    return memo[N] = total(N/2) + total((N+1)/2) + N;
+}
+
 int main() {
-    // code
+    ll N;
+    cin >> N;
+    cout<<total(N);
     return 0;
 }

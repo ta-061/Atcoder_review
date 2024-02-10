@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        // skipped
+    },
+    "C_Cpp.errorSquiggles": "disabled", 
+    // skipped
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.cStandard": "c17",
+    "code-runner.executorMap": {
+        // skipped
+        "cpp": "cd $dir && g++ -std=c++17 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        // skipped
+    },
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "/opt/homebrew/include/**",
+        "/usr/local/include/**",
+    ],
+    "cmake.configureOnOpen": false,
+}

@@ -52,19 +52,18 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-bool chek(ll n){
-    string n_s =to_string(n);
-    string n_t =n_s
-}
 int main() {
-    ll N,ans=0;
-    cin >> N;
-    rep(i,1,N){
-        if(check(i*i*i)){
-            ans=i*i*i;
-        }
+    ll X;
+    ll x;
+    cin >> X;
+    x=X%10;
+    if(x>0){
+        X/=10;
+        X++;
+    }else{
+        X/=10;
     }
-    cout << ans;
+    cout << X;
 
     return 0;
 }

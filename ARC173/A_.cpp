@@ -52,19 +52,38 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-bool chek(ll n){
-    string n_s =to_string(n);
-    string n_t =n_s
+ll chek(ll K, ll count, ll old){
+    if(count==0)return K-1;
+    ll num_max=K/pow(9,count);
+    K = K-(num_max)*pow(9,count);
+    if(old == num_max)num_max++;
+    //cout << "K="<<K<<" count="<<count<<" num_max="<<num_max<<endl;
+    return chek(K,count-1,num_max)+pow(10, count)*num_max;
 }
 int main() {
-    ll N,ans=0;
-    cin >> N;
-    rep(i,1,N){
-        if(check(i*i*i)){
-            ans=i*i*i;
+    int T;
+    ll K,count = 0;
+    cin >> T;
+    ll num, tmp;
+    rep(i,T){
+        cin >> K;
+        if(K>=90){
+            tmp = K;
+            while(tmp/9>0){
+                tmp/=9;
+                count++;
+            }
+            cout << chek(K, count,-1)<<endl;
+        }else{
+            num = K/9;
+            tmp = K%9;
+            if(num==tmp)tmp++;
+            num*=10;
+            cout << tmp+num << endl;
         }
+        //cout << endl <<endl;
+        count = 0;
+        
     }
-    cout << ans;
-
     return 0;
 }

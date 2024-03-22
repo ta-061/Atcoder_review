@@ -6,7 +6,10 @@
         "deque": "cpp",
         "list": "cpp",
         "string": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "complex": "cpp",
+        "valarray": "cpp",
+        "cmath": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled", 
     // skipped

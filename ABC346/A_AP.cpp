@@ -52,23 +52,14 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-
 int main() {
-    string S;
-    ll n;
-    cin >> S;
-    
-    unordered_map<char, ll> charCount;
-    for (char c : S) {
-        charCount[c]++;
+    int N, A1, A2=0;
+    cin >> N;
+    rep(i, N-1){
+        cin >> A1;
+        if(A2==0)cin >> A2;
+        cout << A1*A2<<" ";
+        if(i!=0)A2=A1;
     }
-    n=S.length()*S.length();
-    cout << "n="<<n<<endl;
-    for (auto& pair : charCount) {
-        n-=pair.second*pair.second;
-        cout << pair.first << "=" <<pair.second<<endl;
-    }
-    if(n==0)n=2;
-    cout << n/2;
     return 0;
 }

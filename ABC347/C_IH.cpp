@@ -52,23 +52,27 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-
 int main() {
-    string S;
-    ll n;
-    cin >> S;
-    
-    unordered_map<char, ll> charCount;
-    for (char c : S) {
-        charCount[c]++;
+    ll N, A, B, one_week;
+    int tr =0;
+    cin >> N >> A >> B;
+    ll D;
+    one_week = A+B;
+    vll week(N);
+    rep(i, N){
+        cin >> D;
+        week[i] = D % one_week;
     }
-    n=S.length()*S.length();
-    cout << "n="<<n<<endl;
-    for (auto& pair : charCount) {
-        n-=pair.second*pair.second;
-        cout << pair.first << "=" <<pair.second<<endl;
+    sort(week.begin(), week.end());
+    week.push_back(week[0]+one_week);
+    bool flag =false;
+    rep(i, week.size()-1){
+        if(week[i+1]-week[i]-1>=B){
+            flag = true;
+        }
     }
-    if(n==0)n=2;
-    cout << n/2;
+
+    if(!flag)cout << "Yes";
+    else cout <<"No";
     return 0;
 }

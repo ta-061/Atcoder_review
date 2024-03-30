@@ -52,23 +52,27 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-
 int main() {
-    string S;
-    ll n;
-    cin >> S;
+    int W, B;
+    cin >> W >> B;
+    int total = W+B;
+    int S_c = total/12;
+    int w_c = W-(S_c*7);
+    int b_c = B-(S_c*5);
+    int diff = w_c-b_c;
+    //cout <<"w_c="<<w_c<<" b_c="<<b_c<< " diff="<<diff<<endl;
+    if(diff<0||diff>2){
+        cout << "No";
+        return 0;
+    }
+    cout << "Yes";
+
     
-    unordered_map<char, ll> charCount;
-    for (char c : S) {
-        charCount[c]++;
-    }
-    n=S.length()*S.length();
-    cout << "n="<<n<<endl;
-    for (auto& pair : charCount) {
-        n-=pair.second*pair.second;
-        cout << pair.first << "=" <<pair.second<<endl;
-    }
-    if(n==0)n=2;
-    cout << n/2;
     return 0;
 }
+// 123456789
+// wbwbwwbwbwbw
+// 101012121212
+// wbwbwbwwbwbw
+// 101010121212
+//wbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbwwbwbwwbwbwbw

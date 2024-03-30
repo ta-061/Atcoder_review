@@ -53,22 +53,24 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
 
+int count_substrings(const string& str) {
+    unordered_set<string> substrings;
+    int n = str.length();
+    for (int i = 0; i < n; ++i) {
+        string substring = "";
+        for (int j = i; j < n; ++j) {
+            substring += str[j];
+            substrings.insert(substring);
+        }
+    }
+    
+    return substrings.size();
+}
+
 int main() {
     string S;
-    ll n;
     cin >> S;
-    
-    unordered_map<char, ll> charCount;
-    for (char c : S) {
-        charCount[c]++;
-    }
-    n=S.length()*S.length();
-    cout << "n="<<n<<endl;
-    for (auto& pair : charCount) {
-        n-=pair.second*pair.second;
-        cout << pair.first << "=" <<pair.second<<endl;
-    }
-    if(n==0)n=2;
-    cout << n/2;
+    int c =  count_substrings(S);
+    cout << c;
     return 0;
 }

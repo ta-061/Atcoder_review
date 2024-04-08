@@ -57,45 +57,33 @@ const int MAX_H = 200;
 const int MAX_W = 200;
 const int MAX_N = 300;
 
-int H, W;
-char grid[MAX_H][MAX_W];
-bool visited[MAX_H][MAX_W];
+int H, W, N;
+vvi grid(MAX_H,vi(MAX_W));
+vvi visited(MAX_H,vi(MAX_W,-1));
 int start_r, start_c, goal_r, goal_c;
-int R[MAX_N], C[MAX_N], E[MAX_N];
-
+int R, C, E;
 int dr[] = {-1, 1, 0, 0};
 int dc[] = {0, 0, -1, 1};
 
+
 bool bfs(int sr, int sc) {
     queue<pair<int, int>> q;
-    q.push({sr, sc});
-    visited[sr][sc] = true;
+    q.emplace(sr, sc);
+    visited[sr][sc] = grid[sr][sc];
 
     while (!q.empty()) {
         auto [r, c] = q.front();
         q.pop();
-
-        if (r == goal_r && c == goal_c) return true;
-
-        for (int i = 0; i < 4; ++i) {
+        rep (i, 4) {
             int nr = r + dr[i];
             int nc = c + dc[i];
-
-            if (nr < 0 || nr >= H || nc < 0 || nc >= W || grid[nr][nc] == '#' || visited[nr][nc]) continue;
-
-            for (int j = 0; j < MAX_N; ++j) {
-                if (R[j] == nr && C[j] == nc) {
-                    int new_energy = E[j];
-                    if (new_energy >= 0) {
-                        new_energy = max(0, new_energy);
-                        q.push({nr, nc});
-                        visited[nr][nc] = true;
-                    }
-                    break;
-                }
+            int ne = visited[r][c]-1;
+            if (nr < 0 || nr >= H || nc < 0 || nc >= W || grid[nr][nc] == -1 || visited[r][c]<1) continue;
+            if(visited[nr][nc] < grid[nr][nc] || visited[nr][nc]<visited[r][c]-1 ){
+                visited[nr][nc]=max(grid[nr][nc], visited[r][c]-1);
+                q.emplace(nr, nc);
             }
-            q.push({nr, nc});
-            visited[nr][nc] = true;
+            if (visited[goal_r][goal_c]>-1) return true;
         }
     }
 
@@ -104,36 +92,33 @@ bool bfs(int sr, int sc) {
 
 int main() {
     cin >> H >> W;
+    char a;
 
     rep (i, H) {
         rep (j, W) {
-            cin >> grid[i][j];
-            if (grid[i][j] == 'S') {
+            cin >> a;
+            if(a == '#'){
+                grid[i][j]=-1;
+            }
+            if (a == 'S') {
                 start_r = i;
                 start_c = j;
-            } else if (grid[i][j] == 'T') {
+            } else if (a == 'T') {
                 goal_r = i;
                 goal_c = j;
             }
         }
     }
 
-    int N;
     cin >> N;
-    bool flag=true;
     rep (i, N) {
-        cin >> R[i] >> C[i] >> E[i];
-        --R[i]; 
-        --C[i];
-        if(start_r == R[i]&&start_c == C[i])flag = false;
-    }
-    if(flag){
-        cout << "No" << endl;
-        return 0;
+        cin >> R >> C >> E;
+        --R; 
+        --C;
+        grid[R][C]=E;
     }
 
-
-    memset(visited, false, sizeof(visited));
+    
     if (bfs(start_r, start_c)) {
         cout << "Yes" << endl;
     } else {

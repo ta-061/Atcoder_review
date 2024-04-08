@@ -6,6 +6,7 @@
             "label": "g++ build active file",
             "command": "/opt/homebrew/bin/g++",
             "args": [
+                "*.cpp",
                 "-std=c++17", 
                 "-g",
                 "-Wall",
@@ -14,9 +15,9 @@
                 //"-fsanitize=address,undefined",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
+                "${workspaceFolder}/output",
                 "-I",
-                "./ac-library/atcoder/"
+                "./ac-library/atcoder/",
             ],
             "options": {
                 "cwd": "${fileDirname}/", 

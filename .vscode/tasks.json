@@ -7,20 +7,19 @@
             "command": "/opt/homebrew/bin/g++",
             "args": [
                 "*.cpp",
-                "-std=c++17", 
+                "-std=c++17",
                 "-g",
                 "-Wall",
                 "-Wextra",
                 "-Wshadow",
-                //"-fsanitize=address,undefined",
                 "${file}",
                 "-o",
                 "${workspaceFolder}/output",
                 "-I",
-                "./ac-library/atcoder/",
+                "./ac-library/atcoder/"
             ],
             "options": {
-                "cwd": "${fileDirname}/", 
+                "cwd": "${fileDirname}/"
             },
             "problemMatcher": [
                 "$gcc"
@@ -37,7 +36,7 @@
             "presentation": {
                 "reveal": "always",
                 "focus": true,
-                "panel": "shared",
+                "panel": "shared"
             }
         },
         {
@@ -47,8 +46,28 @@
             "presentation": {
                 "reveal": "always",
                 "focus": true,
-                "panel": "shared",
-            },
+                "panel": "shared"
+            }
         },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ アクティブなファイルのビルド",
+            "command": "/usr/local/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "デバッガーによって生成されたタスク。"
+        }
     ]
 }

@@ -9,7 +9,13 @@
         "vector": "cpp",
         "complex": "cpp",
         "valarray": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "regex": "cpp",
+        "chrono": "cpp",
+        "queue": "cpp",
+        "stack": "cpp",
+        "random": "cpp",
+        "functional": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled", 
     // skipped

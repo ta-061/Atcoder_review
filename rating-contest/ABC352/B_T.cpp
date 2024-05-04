@@ -53,22 +53,14 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
 int main() {
-    int N;
-    cin >> N;
-    vs A(N), B(N);
-
-    rep(i, N){
-        cin >> A[i];
-    }
-    rep(i, N){
-        cin >> B[i];
-    }
-    rep(i,N){
-        rep(j,N){
-            if(A[i][j]!=B[i][j]){
-                cout << i+1<<" "<< j+1;
-                return 0;
-            }
+    string S, T;
+    cin >> S;
+    cin >> T;
+    int tmp=0;
+    for (auto i = 0; i < T.length(); ++i) {
+        if(T[i]==S[tmp]){
+            tmp++;
+            cout <<i <<" ";
         }
     }
 }

@@ -52,16 +52,24 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
+
+
 int main() {
-    int A, B;
-    int a=0, b=0;
-    rep(i,9){cin >> A;a+=A;}
-    rep(i,8){cin >> B;b+=B;}
-    if(a-b<0){
-        cout << 0;
-        return 0;
+    int N;
+    cin >> N;
+    vector<tuple<ll, ll, ll>> A;
+    ll tmp=0, tmpp=0;
+    rep(i,N){
+        cin>>tmp>>tmpp;
+        A.push_back(make_tuple(tmpp-tmp,tmp,tmpp));
     }
-    
-    cout << a-b+1;
+    sort(A.begin(),A.end());
+    ll ans=0;
+    for(const auto& i: A){
+        ans += get<1>(i);
+    }
+    ans += get<0>(A.back());
+
+    cout << ans << endl;
     return 0;
 }

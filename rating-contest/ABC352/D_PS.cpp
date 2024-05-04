@@ -52,60 +52,27 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-const vector<pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-
-bool chek(const vector<string>& grid, int H, int W, int r, int c){
-    bool ans=false;
-    for (const auto& [dr, dc] : directions) {
-        int nr = r + dr;
-        int nc = c + dc;
-        if (nr >= 0 && nr < H && nc >= 0 && nc < W && grid[nr][nc] == '#') {
-            ans=true;
-        }
-    }
-    return ans;
-}
-
-int calculateFreedom(const vector<string>& grid, int H, int W, int sr, int sc, vector<vector<int>>& memo) {
-    if (memo[sr][sc] != -1)return memo[sr][sc];
-
-    if (chek(grid, H, W, sr, sc))return memo[sr][sc]=1;
-
-    int freedom = 1;
-    memo[sr][sc]=0;
-
-    for (const auto& [dr, dc] : directions) {
-        int nr = sr + dr;
-        int nc = sc + dc;
-        if (nr >= 0 && nr < H && nc >= 0 && nc < W && grid[nr][nc] == '.') {
-            freedom += calculateFreedom(grid, H, W, nr, nc, memo);
-        }
-    }
-
-    memo[sr][sc] = freedom;
-    return freedom;
-}
 
 int main() { 
-    int H, W;
-    cin >> H >> W;
-    vs S(H);
-    rep (i,H) {
-        cin >> S[i];
+    int N, K;
+    cin >> N >> K;
+    vi P(N+1,-1);
+    vi P_t(N+1,-1);
+    rep (i,1,N+1) {
+        cin >> P[i];
+        P_t[P[i]]=i;
     }
-
-    vector<vector<int>> memo(H, vector<int>(W, -1));
-
-    int ans = 0;
-    rep(i,H){
-        rep(j,W){
-            if(S[i][j]=='.'){
-                int fre = calculateFreedom(S, H, W, i, j, memo);
-                ans = max(ans, fre);
-            }
-        }
+    set<int> st;
+    rep(i,1,K+1){
+        st.insert(P_t[i]);
+    }
+    int ans=*st.rbegin() - *st.begin();
+    int count=0;
+    rep (i,K+1,N+1) {
+        st.erase(P_t[i - K]);
+        st.insert(P_t[i]);
+        ans = min(ans, *st.rbegin() - *st.begin());
     }
     cout << ans;
-
     return 0;
 }

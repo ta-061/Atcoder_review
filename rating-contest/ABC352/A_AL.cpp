@@ -52,33 +52,20 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-
-void printBalls(stack<int> balls) {
-    while (!balls.empty()) {
-        cout << balls.top() << " ";
-        balls.pop();
-    }
-    cout << endl;
-}
-
 int main() {
-    int N;
-    cin >> N;
-    vi A(N);
-    rep(i,N){
-        cin>>A[i];
-    }
-    stack<int>balls;
-    rep(i,N){
-        int cur = A[i];
-        while(!balls.empty() &&balls.top() == cur){
-            balls.pop();
-            cur++;
-        }
-        balls.push(cur);
+    int N, X, Y, Z;
+    cin >> N >> X >> Y >> Z;
+    if(X>Y){
+        int tmp=Y;
+        Y=X;
+        X=tmp;
     }
 
-    cout << balls.size() << endl;
-    printBalls(balls);
+    if(Z<=Y&&X<=Z){
+        cout << "Yes";
+        return 0;
+    }
+    
+    cout << "No";
     return 0;
 }

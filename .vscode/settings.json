@@ -31,7 +31,9 @@
         "format": "cpp",
         "ranges": "cpp",
         "stacktrace": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "bitset": "cpp",
+        "algorithm": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled", 
     // skipped

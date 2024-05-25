@@ -33,7 +33,8 @@
         "stacktrace": "cpp",
         "tuple": "cpp",
         "bitset": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "variant": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled", 
     // skipped

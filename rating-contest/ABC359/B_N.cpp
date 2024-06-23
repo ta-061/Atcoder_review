@@ -53,27 +53,18 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
 int main() {
-    string S;
-    cin >> S;
-    int tmp_s=0,tmp_S=0;
-    rep(i, S.size()){
-        if(isupper(S[i])){
-            tmp_S+=1;
-        }else{
-            tmp_s+=1;
-        }
-    }
-    if(tmp_s<tmp_S){
-        rep(i, S.size()){
-            S[i]=toupper(S[i]);
-        }
-    }else{
-        rep(i, S.size()){
-            S[i]=tolower(S[i]);
+    int N;
+    cin >> N;
+    vi A(2*N);
+    int ans=0;
+    rep(i, 2*N){
+        cin >> A[i];
+        if(i>1){
+            if(A[i-2]==A[i])ans++;
         }
     }
     
-    cout << S;
+    cout << ans;
 
     return 0;
 }

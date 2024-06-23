@@ -60,12 +60,14 @@ int main() {
     cin >> G_x >> G_y;
     ll diff_x, diff_y;
     if(G_y%2==G_x%2){
-        G_x = G_x+1;
+        G_x++;
 
     }
     if(S_y%2==S_x%2){
-        S_x = S_x+1;
+        S_x++;
     }
+    cout << S_x << " "<< S_y<<endl;
+    cout << G_x << " "<< G_y<<endl;
     diff_x = abs(G_x - S_x);
     diff_y = abs(G_y - S_y);
     diff_x-=diff_y;

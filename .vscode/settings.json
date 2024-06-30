@@ -100,7 +100,8 @@
         "syncstream": "cpp",
         "system_error": "cpp",
         "thread": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "__locale": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled", 
     // skipped

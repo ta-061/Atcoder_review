@@ -52,26 +52,26 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-
 int main() {
-    ll ans=0;
-    ll S_x, S_y, G_x, G_y;
-    cin >> S_x >> S_y; 
-    cin >> G_x >> G_y;
-    ll diff_x, diff_y;
-    if(G_y%2==G_x%2){
-        G_x++
+    string S, T;
+    cin >> S >> T;
+
+    for (int i = 1; i < S.length(); i++) {
+        for (int j = 1; j <= i; j++) {
+            string tes;
+            tes.reserve(T.size());
+            for (int z = 0; z + j <= S.length(); z += i) {
+                if (z + j <= S.length()) {
+                    tes.push_back(S[z + j - 1]);
+                }
+            }
+            if (tes == T) {
+                cout << "Yes";
+                return 0;
+            }
+        }
     }
-    if(S_y%2==S_x%2){
-        S_x++;
-    }
-    cout << S_x << " "<< S_y<<endl;
-    cout << G_x << " "<< G_y<<endl;
-    diff_x = abs(G_x - S_x);
-    diff_y = abs(G_y - S_y);
-    diff_x-=diff_y;
-    if(diff_x<0)diff_x=0;
-    ans = diff_y+diff_x/2;
-    cout << ans;
+    cout <<"No";
+
     return 0;
 }

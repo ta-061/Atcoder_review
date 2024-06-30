@@ -52,26 +52,30 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-
+using pll = pair<ll, ll>;
 int main() {
+    ll N;
+    cin >> N;
+    vector<pair<ll,ll>> AW(N);
+    vll li(N+1,0);
+    rep(i,N){
+        cin >> AW[i].first;
+        li[AW[i].first]++;
+    }
+    rep(i,N){
+        cin >> AW[i].second;
+    }
+    sort(AW.begin(), AW.end(), [](const pll &a, const pll &b) {
+        return a.second < b.second;
+    });
     ll ans=0;
-    ll S_x, S_y, G_x, G_y;
-    cin >> S_x >> S_y; 
-    cin >> G_x >> G_y;
-    ll diff_x, diff_y;
-    if(G_y%2==G_x%2){
-        G_x++
+    rep(i,N){
+        if(li[AW[i].first]>1){
+            li[AW[i].first]-=1;
+            ans+=AW[i].second;
+        }
     }
-    if(S_y%2==S_x%2){
-        S_x++;
-    }
-    cout << S_x << " "<< S_y<<endl;
-    cout << G_x << " "<< G_y<<endl;
-    diff_x = abs(G_x - S_x);
-    diff_y = abs(G_y - S_y);
-    diff_x-=diff_y;
-    if(diff_x<0)diff_x=0;
-    ans = diff_y+diff_x/2;
+
     cout << ans;
     return 0;
 }

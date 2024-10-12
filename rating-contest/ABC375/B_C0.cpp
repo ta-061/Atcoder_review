@@ -35,9 +35,9 @@ struct std::vector<bool>: std::basic_string<bool> {
 
 //多次元vector生成関数
 /*2×2×2で全要素が1のvectorを作成
-  auto a = make_vec<int>({2, 2, 2}, 1);
-  2×2×2で全要素が0のvectorを作成
-  auto b = make_vec<int>({2, 2, 2});*/
+auto a = make_vec<int>({2, 2, 2}, 1);
+2×2×2で全要素が0のvectorを作成
+auto b = make_vec<int>({2, 2, 2});*/
 template<class T, size_t n, size_t idx = 0>
 auto make_vec(const size_t (&d)[n], const T& init) noexcept {
     if constexpr (idx < n) return std::vector(d[idx], make_vec<T, n, idx + 1>(d, init));
@@ -52,30 +52,16 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-
-
 int main() {
     int N;
+    double X, Y, b_x=0,b_y=0,ans=0;
     cin >> N;
-    vs A(N+1);
-    string s;
-    A[0]="";
-    rep(i,1,N+1) {
-        cin >> s;
-        A[i]="1"+s;
+    rep(i,N){
+        cin >> X >> Y;
+        ans+= sqrt((X-b_x)*(X-b_x)+(Y-b_y)*(Y-b_y));
+        b_x=X;
+        b_y=Y;
     }
-
-    vs B=A;
-    rep(i,1,N/2+1){
-        rep(x,i,N-i+2){
-            rep(y,i,N-i+2){
-                B[y][N+1-x]=A[x][y];
-            }
-        }
-        A=B;
-    }
-
-    rep(i,1,N+1) {
-        cout << A[i].substr(1) << endl;
-    }
+    ans+=sqrt((X-0)*(X-0)+(Y-0)*(Y-0));
+    cout << fixed << setprecision(10) << ans << endl;
 }

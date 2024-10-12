@@ -54,28 +54,27 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define continue_with(...) ({ __VA_ARGS__; continue; })
 
 
+
 int main() {
-    int N;
-    cin >> N;
-    vs A(N+1);
-    string s;
-    A[0]="";
-    rep(i,1,N+1) {
-        cin >> s;
-        A[i]="1"+s;
-    }
-
-    vs B=A;
-    rep(i,1,N/2+1){
-        rep(x,i,N-i+2){
-            rep(y,i,N-i+2){
-                B[y][N+1-x]=A[x][y];
-            }
+    string S;
+    cin >> S;
+    int N=S.size();
+    vector<vector<int>> pos(26);
+    rep(i,N)pos[S[i]-'A'].push_back(i);
+    ll ans=0;
+    rep(i,26){
+        vi &p=pos[i];
+        int n=p.size();
+        if(n<2)continue;
+        vll sum(n+1,0);
+        for(int i=n-1;i>=0;i--)sum[i]=sum[i+1]+p[i];
+        ll tot=0;
+        rep(i, n-1){
+            ll count=n-i-1;
+            ll sum_t=sum[i+1];
+            tot+=sum_t-count*p[i]-count;
         }
-        A=B;
+        ans+=tot;
     }
-
-    rep(i,1,N+1) {
-        cout << A[i].substr(1) << endl;
-    }
+    cout << ans << endl;
 }

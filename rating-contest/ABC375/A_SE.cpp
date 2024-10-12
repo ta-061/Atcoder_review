@@ -52,30 +52,21 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-
-
 int main() {
     int N;
+    string S;
     cin >> N;
-    vs A(N+1);
-    string s;
-    A[0]="";
-    rep(i,1,N+1) {
-        cin >> s;
-        A[i]="1"+s;
+    cin >> S;
+    int ans=0;
+    if(N<3){
+        cout << 0 << endl;
+        return 0;
     }
-
-    vs B=A;
-    rep(i,1,N/2+1){
-        rep(x,i,N-i+2){
-            rep(y,i,N-i+2){
-                B[y][N+1-x]=A[x][y];
-            }
+    rep(i, N-2){
+        if(S[i]=='#'&&S[i+1]=='.'&&S[i+2]=='#'){
+            ans++;
         }
-        A=B;
     }
+    cout << ans << endl;
 
-    rep(i,1,N+1) {
-        cout << A[i].substr(1) << endl;
-    }
 }

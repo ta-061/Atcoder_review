@@ -35,9 +35,9 @@ struct std::vector<bool>: std::basic_string<bool> {
 
 //多次元vector生成関数
 /*2×2×2で全要素が1のvectorを作成
-  auto a = make_vec<int>({2, 2, 2}, 1);
-  2×2×2で全要素が0のvectorを作成
-  auto b = make_vec<int>({2, 2, 2});*/
+auto a = make_vec<int>({2, 2, 2}, 1);
+2×2×2で全要素が0のvectorを作成
+auto b = make_vec<int>({2, 2, 2});*/
 template<class T, size_t n, size_t idx = 0>
 auto make_vec(const size_t (&d)[n], const T& init) noexcept {
     if constexpr (idx < n) return std::vector(d[idx], make_vec<T, n, idx + 1>(d, init));
@@ -52,7 +52,25 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
+
 int main() {
-    cout << "test";
-    return 0;
+    int N, R;
+    cin >> N >> R;
+    int b1[2]={1600,2799};
+    int b2[2]={1200,2399};
+    rep(i,N){
+        int D,A;
+        cin >> D >> A;
+        if(D==1){
+            if(R>=b1[0]&&R<=b1[1]){
+                R+=A;
+            }
+        }else{
+            if(R>=b2[0]&&R<=b2[1]){
+                R+=A;
+            }
+        }
+        if(R<0)R=0;
+    }
+    cout << R;
 }

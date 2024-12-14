@@ -35,9 +35,9 @@ struct std::vector<bool>: std::basic_string<bool> {
 
 //多次元vector生成関数
 /*2×2×2で全要素が1のvectorを作成
-  auto a = make_vec<int>({2, 2, 2}, 1);
-  2×2×2で全要素が0のvectorを作成
-  auto b = make_vec<int>({2, 2, 2});*/
+auto a = make_vec<int>({2, 2, 2}, 1);
+2×2×2で全要素が0のvectorを作成
+auto b = make_vec<int>({2, 2, 2});*/
 template<class T, size_t n, size_t idx = 0>
 auto make_vec(const size_t (&d)[n], const T& init) noexcept {
     if constexpr (idx < n) return std::vector(d[idx], make_vec<T, n, idx + 1>(d, init));
@@ -53,6 +53,27 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
 int main() {
-    cout << "test";
-    return 0;
+    int a, b, c, d,e;
+    cin >> a >> b >> c >> d>>e;
+    vector<pair<int,char>> scmp={{a,'A'},{b,'B'},{c,'C'},{d,'D'},{e,'E'}};
+    vector<pair<int,string>> ans;
+    rep(i,1<<5){
+        int score=0;
+        string s="";
+        rep(j,5){
+            if(i&(1<<j)){
+                score+=scmp[j].first;
+                s+=scmp[j].second;
+            }
+        }
+        ans.push_back({score,s});
+    }
+    sort(ans.begin(),ans.end(),[](const pair<int,string>&a,const pair<int,string>&b){
+        if (a.first != b.first) return a.first > b.first;
+        if (a.second.size()!=b.second.size()) return a.second.size()>b.second.size();
+        return a.second < b.second;
+    });
+    for(const auto&p: ans){
+        cout<<p.second<<endl;
+    }
 }

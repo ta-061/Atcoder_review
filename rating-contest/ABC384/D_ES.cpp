@@ -35,9 +35,10 @@ struct std::vector<bool>: std::basic_string<bool> {
 
 //多次元vector生成関数
 /*2×2×2で全要素が1のvectorを作成
-  auto a = make_vec<int>({2, 2, 2}, 1);
-  2×2×2で全要素が0のvectorを作成
-  auto b = make_vec<int>({2, 2, 2});*/
+auto a = make_vec<int>({2, 2, 2}, 1);
+2×2×2で全要素が0のvectorを作成
+auto b = make_vec<int>({2, 2, 2});*/
+
 template<class T, size_t n, size_t idx = 0>
 auto make_vec(const size_t (&d)[n], const T& init) noexcept {
     if constexpr (idx < n) return std::vector(d[idx], make_vec<T, n, idx + 1>(d, init));
@@ -52,7 +53,34 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define exit_with(...) ({ __VA_ARGS__; exit(0); })
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
-int main() {
-    cout << "test";
-    return 0;
+int main(){
+    ll N, S;
+    cin >> N >> S;
+    vll A(N);
+    ll sum=0;
+    rep(i, N){
+        cin>>A[i];
+        sum+=A[i];
+    }
+    S%=sum;
+    A.reserve(2 * N);
+    for (int i = 0; i < N; ++i) {
+        A.push_back(A[i]);
+    }
+    unordered_set<ll> dp;
+    sum=0;
+    dp.insert(0);
+    for (ll a : A) {
+        sum+=a;
+        dp.insert(sum);
+    }
+    sum=0;
+    for (ll a : A) {
+        sum += a;
+        if (dp.find(sum + S) != dp.end()) {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
+    cout << "No" << endl;
 }

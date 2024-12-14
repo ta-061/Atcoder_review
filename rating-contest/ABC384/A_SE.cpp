@@ -53,6 +53,13 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
 int main() {
-    cout << "test";
-    return 0;
+    int N;
+    char c1, c2;
+    cin >> N >> c1 >> c2;
+    string S;
+    cin >> S;
+    for(auto &c : S) {
+        if(c != c1) c = c2;
+    }
+    cout << S << endl;
 }

@@ -1,5 +1,9 @@
 #include <bits/stdc++.h>
+//#include <boost/multiprecision/cpp_int.hpp>
+//brew install boost
+//#include <atcoder/modint>
 using namespace std;
+//using namespace atcoder;
 
 template<typename T> using vc = vector<T>;
 template<typename T> using vv = vc<vc<T>>;
@@ -7,12 +11,11 @@ template<typename T> using vv = vc<vc<T>>;
 using ull = unsigned long long;
 using ll = long long;
 ll INF = 2e18;
-#include <boost/multiprecision/cpp_int.hpp>
-namespace multip = boost::multiprecision;
-using lll = multip::int128_t;
+//namespace multip = boost::multiprecision;
+//using lll = multip::int128_t;
 using ld = long double;
 using bl = bool;
-using mint = modint998244353;
+//using mint = modint998244353;
 //using mint = modint1000000007;
 //using mint = modint;
 //mint::set_mod(m); // modintのmodをmに設定使い方
@@ -26,7 +29,7 @@ using pll = pair<ll, ll>;
 using vi = vc<int>; using vll = vc<long long>; using vvi = vv<int>; using vvll = vv<ll>; using vvvll = vv<vll>;
 using vs = vector<string>; using vvs = vv<string>;
 using vb = vc<bl>; using vvb = vv<bl>; using vvvb = vv<vb>;
-using vmint = vc<mint>; using vvmint = vv<mint>; using vvvmint = vv<vmint>;
+//using vmint = vc<mint>; using vvmint = vv<mint>; using vvvmint = vv<vmint>;
 
 
 
@@ -65,10 +68,10 @@ bool out_grid(ll i, ll j, ll h, ll w) {//trueならcontinue
     return (!(0 <= i && i < h && 0 <= j && j < w));
 }
 
-vl dx = { 1,0,-1,0 };
-vl dy = { 0,1,0,-1 };
-//vl dx={1,1,0,-1,-1,-1,0,1};
-//vl dy={0,1,1,1,0,-1,-1,-1};
+vi dx = { 1,0,-1,0 };
+vi dy = { 0,1,0,-1 };
+//vi dx={1,1,0,-1,-1,-1,0,1};
+//vi dy={0,1,1,1,0,-1,-1,-1};
 
 //ラムダ記法
 /*auto func = lambda($(0) * 3 + 1);*/
@@ -90,14 +93,14 @@ template<class T>T tousa_sum2(T a, T d, T n) {//初項,交差,項数 で総和�
 ll kousa_kousuu(ll l, ll r, ll d) {//初項,末項,交差 で等差数列の項数を求める
     return (r - l) / d + 1;
 }
-mint touhi_sum(mint a, mint r, ll n) {//初項,公比,項数で等比数列の総和を求める
-    if (r == 1) {
-        return a * n;
-    }
-    mint bunsi = a * (r.pow(n) - mint(1));
-    mint bunbo = r - 1;
-    return bunsi / bunbo;
-}
+// mint touhi_sum(mint a, mint r, ll n) {//初項,公比,項数で等比数列の総和を求める
+//     if (r == 1) {
+//         return a * n;
+//     }
+//     mint bunsi = a * (r.pow(n) - mint(1));
+//     mint bunbo = r - 1;
+//     return bunsi / bunbo;
+// }
 
 #define vc_cout(v){ll n = size(v);rep(i,n)cout<<v[i]<<endl;}//一次元配列を出力する
 #define vv_cout(v){ll n = size(v);rep(i,n){rep(j,size(v[i])){cout<<v[i][j]<<' ';}cout<<endl;}}//二次元配列を出力する
@@ -126,5 +129,6 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 
 int main() {
     // code
+    cout << "test";
     return 0;
 }

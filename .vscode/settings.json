@@ -101,7 +101,9 @@
         "system_error": "cpp",
         "thread": "cpp",
         "typeindex": "cpp",
-        "__locale": "cpp"
+        "__locale": "cpp",
+        "generator": "cpp",
+        "text_encoding": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled", 
     // skipped

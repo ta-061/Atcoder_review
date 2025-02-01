@@ -120,4 +120,8 @@
         "/usr/local/include/**",
     ],
     "cmake.configureOnOpen": false,
+    "github.copilot.enable": {
+        "javascript": false,
+        "cpp": false
+    }
 }

@@ -122,6 +122,6 @@
     "cmake.configureOnOpen": false,
     "github.copilot.enable": {
         "javascript": false,
-        "cpp": false
+        "cpp": true,
     }
 }

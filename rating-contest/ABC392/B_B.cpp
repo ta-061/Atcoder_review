@@ -126,17 +126,24 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
 
+
 int main() {
-    int N;
-    cin >> N;
-    vector<int> A(N+1,2e9);
-    for(int i=2;i<=N; i++) cin >> A[i];
-    vector<int> B(N+1,2e9);
-    for(int i=3;i<=N; i++) cin >> B[i];
-    vi dp(N+1,0);
-    dp[2]=A[2];
-    for(int i=3;i<=N;i++){
-        dp[i]=min(dp[i-1]+A[i],dp[i-2]+B[i]);
+    int N, M;
+    cin >> N >> M;
+    vi A(M);
+    rep(i,M) cin >> A[i];
+    int tmp = 0;
+    sort(all(A));
+    vi ans;
+    rep(i,1,N+1){
+        if(A[tmp]==i){
+            tmp++;
+        }else{
+            ans.push_back(i);
+        }
     }
-    cout<<dp[N]<<endl;
+    cout<<size(ans)<<endl;
+    rep(i,size(ans)){
+        cout<<ans[i]<<" ";
+    }
 }

@@ -128,15 +128,33 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 
 int main() {
     int N;
-    cin >> N;
-    vector<int> A(N+1,2e9);
-    for(int i=2;i<=N; i++) cin >> A[i];
-    vector<int> B(N+1,2e9);
-    for(int i=3;i<=N; i++) cin >> B[i];
-    vi dp(N+1,0);
-    dp[2]=A[2];
-    for(int i=3;i<=N;i++){
-        dp[i]=min(dp[i-1]+A[i],dp[i-2]+B[i]);
+    cin>>N;
+    vi K(N);
+    vector<unordered_map<int,int>>mp(N);
+    rep(i,N){
+        cin>>K[i];
+        rep(j,K[i]){
+            int a;
+            cin>>a;
+            mp[i][a]++;
+        }
     }
-    cout<<dp[N]<<endl;
+    ld ans=0.0L;
+    rep(i,N){
+        rep(j,i+1,N){
+            ld cnt=0.0L;
+            for(auto &key:mp[i]){
+                int tx=key.first;
+                int ci=key.second;
+                if(mp[j].count(tx)){
+                    int cj=mp[j][tx];
+                    ld pi=(ld)ci/K[i];
+                    ld pj=(ld)cj/K[j];
+                    cnt+=pi*pj;
+                }
+            }
+            ans=max(ans,cnt);
+        }
+    }
+    cout << fixed << setprecision(10) << ans << endl;
 }

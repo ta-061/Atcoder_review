@@ -126,17 +126,34 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
 
+
 int main() {
-    int N;
-    cin >> N;
-    vector<int> A(N+1,2e9);
-    for(int i=2;i<=N; i++) cin >> A[i];
-    vector<int> B(N+1,2e9);
-    for(int i=3;i<=N; i++) cin >> B[i];
-    vi dp(N+1,0);
-    dp[2]=A[2];
-    for(int i=3;i<=N;i++){
-        dp[i]=min(dp[i-1]+A[i],dp[i-2]+B[i]);
+    int A1, A2, A3;
+    cin >> A1 >> A2 >> A3;
+    int max1 =0;
+    max1=max(A1,A2);
+    max1=max(max1,A3);
+    if(max1==A1){
+        if(A2*A3==max1){
+            YES;
+        }else{
+            NO;
+        }
     }
-    cout<<dp[N]<<endl;
+    else if(max1==A2){
+        if(A1*A3==max1){
+            YES;
+        }else{
+            NO;
+        }
+    }
+    else{
+        if(A1*A2==max1){
+            YES;
+        }else{
+            NO;
+        }
+    }
+
+
 }

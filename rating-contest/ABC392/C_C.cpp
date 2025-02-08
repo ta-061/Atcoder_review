@@ -129,14 +129,26 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 int main() {
     int N;
     cin >> N;
-    vector<int> A(N+1,2e9);
-    for(int i=2;i<=N; i++) cin >> A[i];
-    vector<int> B(N+1,2e9);
-    for(int i=3;i<=N; i++) cin >> B[i];
-    vi dp(N+1,0);
-    dp[2]=A[2];
-    for(int i=3;i<=N;i++){
-        dp[i]=min(dp[i-1]+A[i],dp[i-2]+B[i]);
+    
+    vi P(N + 1);
+    vi Q(N + 1);
+    vi revQ(N + 1);
+    for (int i = 1; i <= N; i++) cin >> P[i];
+    for (int i = 1; i <= N; i++) cin >> Q[i];
+    vi Q_inv(N + 1);
+    rep(i, 1, N + 1) {
+        Q_inv[Q[i]] = i;
     }
-    cout<<dp[N]<<endl;
+    vi S(N + 1);
+    for(int i = 1; i <= N; i++){
+        int x = Q_inv[i];
+        int to = P[x];
+        S[i] = Q[to];
+    }
+
+    rep(i,1,N+1){
+        cout<<S[i]<<' ';
+    }
+
+
 }

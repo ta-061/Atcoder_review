@@ -126,11 +126,14 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
 
+ll N, K;
+vvi adj;
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    // code
-    cout << "test";
-    return 0;
-}
+int dfs(int v, int p) {
+    vi pe;
+    for(auto w : adj[v]) {
+        if(w == p) continue;
+        int d = dfs(w, v);
+        if(d == -1) return -1;        
+        if(d > 0) pe.push_back(d + 1);
+  

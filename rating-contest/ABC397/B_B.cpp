@@ -128,9 +128,15 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    // code
-    cout << "test";
-    return 0;
-}
+    string S;
+    cin >> S;
+    bool io=false;
+    int ans=0;
+    int n=S.size();
+    string tmp="";
+    rep(i,n*2+10){
+        if(i%2==0)tmp+='i';
+        else tmp+='o';
+    }
+    int i=0,j=0;
+    while

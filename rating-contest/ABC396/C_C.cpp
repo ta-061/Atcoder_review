@@ -130,12 +130,12 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 int main() {
     int N, M;
     cin >> N >> M;
-    vll B(N);
+    vll B(N); //vector<long long> B(N);
     vll W(M);
-    rep(i, N) cin >> B[i];
+    rep(i, N) cin >> B[i]; //for(int i=0;i<N;i++)cin>>B[i];
     rep(i, M) cin >> W[i];
 
-    sort(all(B), greater<ll>());
+    sort(all(B), greater<ll>()); //降順
     sort(all(W), greater<ll>());
 
     vll prB(N+1), prW(M+1);
@@ -144,14 +144,14 @@ int main() {
 
     vll dp(N+1,-LLONG_MAX);
     dp[N]=prB[N];
-    drep(i,N-1){
+    drep(i,N-1){ //for(int i=N-1;i>=0;i--) N-1から0まで
         dp[i]=max(prB[i],dp[i+1]);
     }
 
     ll ans=0;
     int limit=min(N,M);
     rep(i,limit+1){
-        chmax(ans,dp[i]+prW[i]);
+        chmax(ans,dp[i]+prW[i]); //ans=max(ans,dp[i]+prW[i]);
     }
     cout << ans << endl;
 }

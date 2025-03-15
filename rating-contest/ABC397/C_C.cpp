@@ -128,9 +128,36 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    // code
-    cout << "test";
-    return 0;
+    int N;
+    cin >> N;
+    vi A(N);
+    rep(i, N) {
+        cin >> A[i];
+    }
+    vi freq(N+1,0);
+    vi pref(N+1,0);
+    int diff = 0;
+    rep(i, N) {
+        if(freq[A[i]]==0) {
+            diff++;
+        }
+        freq[A[i]]++;
+        pref[i+1] = diff;
+    }
+    fill(all(freq), 0);
+    vi suf(N+1,0);
+    diff=0;
+    drep(i,N-1){
+        if(freq[A[i]]==0){
+            diff++;
+        }
+        freq[A[i]]++;
+        suf[i]=diff;
+    }
+    int ans=0;
+    rep(i,1,N){
+        chmax(ans,pref[i]+suf[i]);
+    }
+    cout << ans << endl;
+
 }

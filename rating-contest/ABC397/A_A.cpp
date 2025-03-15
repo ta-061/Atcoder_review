@@ -128,9 +128,15 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    // code
-    cout << "test";
-    return 0;
+    double X;
+    cin >> X;
+    if(X>=38.0){
+        cout <<1<<endl;
+    }
+    else if(X<37.5){
+        cout <<3<<endl;
+    }
+    else{
+        cout <<2<<endl;
+    }
 }

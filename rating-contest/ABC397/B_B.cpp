@@ -139,4 +139,13 @@ int main() {
         else tmp+='o';
     }
     int i=0,j=0;
-    while
+    while(i<n && j<tmp.size()){
+        if(S[i]==tmp[j]){
+            i++;
+        }
+        j++;
+    }
+    if(j%2==1)j++;
+    ans=j-n;
+    cout << ans << endl;
+}

@@ -136,4 +136,44 @@ int dfs(int v, int p) {
         int d = dfs(w, v);
         if(d == -1) return -1;        
         if(d > 0) pe.push_back(d + 1);
-  
+    }
+    if(pe.empty()){        
+        return 1;
+    }
+    else if(pe.size() == 1){
+        int d = pe[0];
+        if(d == K) return 0;  
+        if(d > K) return -1;  
+        return d;
+    }
+    else if(pe.size() == 2){
+        int d1 = pe[0], d2 = pe[1];        
+        if(d1 + d2 - 1 == K) return 0;
+        else return -1;
+    }
+    else {
+        return -1;
+    }
+}
+ 
+int main(){
+    cin >> N >> K;
+    int total = N * K;   
+    if(K == 1){       
+        YES;
+        return 0;
+    }
+    
+    adj.resize(total + 1);
+    rep(i, 1, total){
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    int ret = dfs(1, -1);   
+    if(ret == 0) YES;
+    else NO;
+    return 0;
+}
+

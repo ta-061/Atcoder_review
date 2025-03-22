@@ -126,29 +126,29 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
 
+
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int N;
     cin >> N;
-    
-    vi P(N + 1);
-    vi Q(N + 1);
-    vi revQ(N + 1);
-    for (int i = 1; i <= N; i++) cin >> P[i];
-    for (int i = 1; i <= N; i++) cin >> Q[i];
-    vi Q_inv(N + 1);
-    for (int i = 1; i <= N; i++) {
-        Q_inv[Q[i]] = i;
+    map<ll, ll> mp;
+    map<ll, ll> mp2;
+    rep(i, N) {
+        ll a;
+        cin >> a;
+        mp[a]++;
+        if(mp[a]==1){
+            mp2[a]=i+1;
+        }else{
+            mp2.erase(a);
+        }
     }
-    vi S(N + 1);
-    for(int i = 1; i <= N; i++){
-        int x = Q_inv[i];
-        int to = P[x];
-        S[i] = Q[to];
+    auto ans = mp2.end();
+    if(ans->first==0)cout << -1;
+    else{
+        ans--;
+        cout << ans->second<< endl;
     }
-
-    rep(i,1,N+1){
-        cout<<S[i]<<' ';
-    }
-
 
 }

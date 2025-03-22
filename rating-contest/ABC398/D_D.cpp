@@ -126,29 +126,34 @@ auto make_vec(const size_t (&d)[n]) noexcept {
 #define break_with(...) ({ __VA_ARGS__; break; })
 #define continue_with(...) ({ __VA_ARGS__; continue; })
 
+
 int main() {
-    int N;
-    cin >> N;
-    
-    vi P(N + 1);
-    vi Q(N + 1);
-    vi revQ(N + 1);
-    for (int i = 1; i <= N; i++) cin >> P[i];
-    for (int i = 1; i <= N; i++) cin >> Q[i];
-    vi Q_inv(N + 1);
-    for (int i = 1; i <= N; i++) {
-        Q_inv[Q[i]] = i;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int N, R, C;
+    string S;
+    cin >> N >> R >> C;
+    cin >> S;
+    set<pii> mp;
+    pii p={0,0}, q={R,C};
+    mp.insert(p);
+    for(auto s:S){
+        if(s=='N'){
+            p.first++;
+            q.first++;
+        }else if(s=='S'){
+            p.first--;
+            q.first--;
+        }else if(s=='W'){
+            p.second++;
+            q.second++;
+        }else if(s=='E'){
+            p.second--;
+            q.second--;
+        }
+        mp.insert(p);
+        if(mp.find(q)==mp.end())cout << "0";
+        else cout << "1";  
+        
     }
-    vi S(N + 1);
-    for(int i = 1; i <= N; i++){
-        int x = Q_inv[i];
-        int to = P[x];
-        S[i] = Q[to];
-    }
-
-    rep(i,1,N+1){
-        cout<<S[i]<<' ';
-    }
-
-
 }

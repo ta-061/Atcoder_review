@@ -121,7 +121,11 @@
     ],
     "cmake.configureOnOpen": false,
     "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false,
         "javascript": false,
-        "cpp": true,
+        "cpp": false
     }
 }

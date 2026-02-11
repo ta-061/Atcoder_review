@@ -141,15 +141,13 @@ int main() {
         }
         while(r<l+K-1){
             r++;
-            if(r>N)break;
             tmp+=A[r];
         }
         while(r<=N&&tmp<M){
             r++;
-            if(r>N)break;
             tmp+=A[r];
         }
-        if(r<=M&&tmp>=M)ans+=(N-r+1);
+        if(r<=N&&tmp>=M)ans+=(N-r+1);
         tmp-=A[l];
     }
     cout << ans;
